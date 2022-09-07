@@ -1,0 +1,31 @@
+{
+  "name": "abaso-backend",
+  "version": "1.0.0",
+  "description": "backend for Abaso website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "backend"
+  ],
+  "author": "divt",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/node": "^7.18.10",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "firebase": "^9.9.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.10"
+  }
+}
