@@ -1,6 +1,6 @@
 #CREATE DATABASE & TABLES
-CREATE DATABASE learn_nodejs;
-USE learn_nodejs;
+CREATE DATABASE abaso_database;
+USE abaso_database;
 
 CREATE TABLE User(
 	id varchar(15) NOT NULL,
@@ -161,6 +161,18 @@ CREATE PROCEDURE removeProductById(
 BEGIN
   DECLARE _id int DEFAULT __id;
   DELETE FROM product
+  WHERE id=_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS getProductById $$
+CREATE PROCEDURE getProductById(
+	IN __id int
+)
+BEGIN
+  DECLARE _id int DEFAULT __id;
+  SELECT * FROM product
   WHERE id=_id;
 END $$
 DELIMITER ;

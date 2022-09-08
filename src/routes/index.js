@@ -14,6 +14,9 @@ let routes = (app) => {
     //GET AllProducts
     router.get('/all-products', cors(), productController.getAll)
 
+    //GET Product By Id
+    router.get('/product', cors(), productController.getProductById)
+
     //POST Create Product
     router.post('/product', cors(), productController.createProduct)
 
