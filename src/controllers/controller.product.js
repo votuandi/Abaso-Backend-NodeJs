@@ -7,8 +7,17 @@ let getAll = async (req, res) => {
     res.send(JSON.stringify(products))
 }
 
+//GET /product
+let getProductById = async (req, res) => {
+    let productId = req.query.pid
+    let product = await productServices.getProductById((productId))
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(product))
+}
+
 //POST product/
 let createProduct = (req, res) => {
+    console.log('CREATE PRODUCT');
     let newProduct = req.body.body
 
     productServices.createProduct(newProduct)
@@ -23,7 +32,6 @@ let createProduct = (req, res) => {
 let editSubProduct = (req, res) => {
     console.log('EDIT SUB');
     let sub = req.body.body
-    console.log(sub);
 
     productServices.editSubProduct(sub)
     res.setHeader('Content-Type', 'application/json');
@@ -102,5 +110,6 @@ module.exports = {
     editSubProduct: editSubProduct,
     removeSubProductById: removeSubProductById,
     removeSubProductByProductId: removeSubProductByProductId,
-    removeProductById: removeProductById
+    removeProductById: removeProductById,
+    getProductById: getProductById
 }

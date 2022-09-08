@@ -10,17 +10,21 @@ let getAll = async () => {
     let res = []
     // console.log(products);
     for (const product of products) {
-        let subProducts = await new Promise((resolve, reject) => {
-            let subs = getSpByPid(product.id)
-            if (subs == null) {
-                reject(null)
-            } else {
-                resolve(subs)
-            }
-        })
+        let subProducts = await getSpByPid(product.id)
         res.push(new Product(product, subProducts))
     }
     return res
+}
+
+let getProductById = async (_pid) => {
+    let query = `CALL getProductById(${_pid})`
+    let product = {
+        ...(await excuteQuery(query))[0][0]
+    }
+    let subProducts = await getSpByPid(product.id)
+
+    product = new Product(product, subProducts)
+    return product
 }
 
 let createProduct = async (_newProduct) => {
@@ -62,7 +66,6 @@ let editProduct = async (_product) => {
     //UPDATE PRODUCT
     //PREPARE PRODUCT DATA
     let propertyNames = solvaData.array2Object(_product.property_names)
-    console.log(propertyNames);
     _product.details.videos = solvaData.array2Object(_product.details.videos)
     _product.details.images = solvaData.array2Object(_product.details.images)
 
@@ -173,6 +176,7 @@ let removeProductById = async (_pid) => {
     }
 }
 
+
 module.exports = {
     getAll: getAll,
     createProduct: createProduct,
@@ -183,5 +187,6 @@ module.exports = {
     editSubProduct: editSubProduct,
     removeSubProductById: removeSubProductById,
     removeSubProductByProductId: removeSubProductByProductId,
-    removeProductById: removeProductById
+    removeProductById: removeProductById,
+    getProductById: getProductById
 }
