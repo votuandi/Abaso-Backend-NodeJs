@@ -19,7 +19,13 @@ let parseDataToArray = (_data) => {
     }
 }
 
+let getCurrentDate = () => {
+    let today = new Date()
+    return today.toISOString().split('T')[0]
+}
+
 module.exports = {
     array2Object: array2Object,
-    parseDataToArray: parseDataToArray
+    parseDataToArray: parseDataToArray,
+    getCurrentDate: getCurrentDate
 }
